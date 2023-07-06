@@ -11,5 +11,6 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /dev/dri:/dev/dri
     # entrypoint: [ "tail", "-f", "/dev/null"]
+    entrypoint: [ "/bin/bash", "-c" ]
     command:
        - ign gazebo $HOME/myrobot.sdf -v4
