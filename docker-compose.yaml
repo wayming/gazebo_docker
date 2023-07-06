@@ -10,7 +10,6 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /dev/dri:/dev/dri
-      - //home/wayming/workspace/ws_ros2/src://home/wayming/workspace/ws_ros2/src
-    entrypoint: [ "tail", "-f", "/dev/null"]
-    # command:
-    #    - ign gazebo ~/myrobot.sdf -v4
+    # entrypoint: [ "tail", "-f", "/dev/null"]
+    command:
+       - ign gazebo $HOME/myrobot.sdf -v4

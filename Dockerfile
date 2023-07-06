@@ -3,6 +3,7 @@ ARG USERNAME=wayming
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG DEBIAN_FRONTEND=noninteractive
+ENV HOME /home/${USERNAME}
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
@@ -28,9 +29,10 @@ RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 RUN apt-get update -y
 RUN apt-get install ignition-fortress -y
 #RUN apt-get install ros-humble-turtlebot4-simulator -y
-COPY ./myrobot.sdf ~/myrobot.sdf
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
+COPY ./myrobot.sdf $HOME/myrobot.sdf
+
 
 CMD ["/bin/bash"]
