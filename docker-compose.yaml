@@ -7,10 +7,15 @@ services:
     network_mode: host
     environment:
       - DISPLAY=:1
+      - NVIDIA_DRIVER_CAPABILITIES=all
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - /dev/dri:/dev/dri
+      - /dev:/dev
+      - /home/wayming/workspace/gazebo:$HOME/gazebo
+      - /home/wayming/workspace/gazebo/.cache:$HOME/.cache
+      - /home/wayming/workspace/gazebo/.ignition:$HOME/.ignition
+      - /home/wayming/workspace/gazebo/.sdformat:$HOME/.sdformat
     # entrypoint: [ "tail", "-f", "/dev/null"]
     entrypoint: [ "/bin/bash", "-c" ]
     command:
-       - ign gazebo $HOME/myrobot.sdf -v4
+       - ign gazebo $HOME/gazebo/myrobot.sdf -v4
