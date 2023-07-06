@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  fortress:
+    image: gazebo:latest
+    container_name: fortress
+    network_mode: host
+    environment:
+      - DISPLAY=:1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/dri:/dev/dri
+      - //home/wayming/workspace/ws_ros2/src://home/wayming/workspace/ws_ros2/src
+    entrypoint: [ "tail", "-f", "/dev/null"]
+    # command:
+    #    - ign gazebo ~/myrobot.sdf -v4
