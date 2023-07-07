@@ -5,9 +5,11 @@ services:
     image: gazebo:latest
     container_name: fortress
     network_mode: host
+    runtime: nvidia # Install NVIDIA Container Toolkit
     environment:
       - DISPLAY=:1
       - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /dev:/dev
@@ -15,7 +17,7 @@ services:
       - /home/wayming/workspace/gazebo/.cache:$HOME/.cache
       - /home/wayming/workspace/gazebo/.ignition:$HOME/.ignition
       - /home/wayming/workspace/gazebo/.sdformat:$HOME/.sdformat
-    # entrypoint: [ "tail", "-f", "/dev/null"]
+    #entrypoint: [ "tail", "-f", "/dev/null"]
     entrypoint: [ "/bin/bash", "-c" ]
     command:
        - ign gazebo $HOME/gazebo/myrobot.sdf -v4

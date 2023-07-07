@@ -1,4 +1,6 @@
-FROM ubuntu:22.04
+#FROM ubuntu:22.04
+FROM ros:humble
+
 ARG USERNAME=wayming
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -28,7 +30,7 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 RUN apt-get update -y
 RUN apt-get install ignition-fortress -y
-#RUN apt-get install ros-humble-turtlebot4-simulator -y
+RUN apt-get install ros-humble-turtlebot4-simulator -y
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
